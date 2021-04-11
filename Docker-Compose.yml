@@ -1,0 +1,16 @@
+version: "3"
+services:
+  application:
+    container_name: application
+    build: .
+    expose:
+      - 8080
+  web:
+    container_name: web
+    image: nginx
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - application
